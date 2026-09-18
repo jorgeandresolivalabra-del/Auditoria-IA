@@ -1394,7 +1394,7 @@ function submitLead(data) {
      1) Define GOCLIENTES_WEBHOOK_URL arriba con tu endpoint.
      2) Descomenta el bloque fetch de abajo.
   */
-  /*
+  
   if (typeof GOCLIENTES_WEBHOOK_URL === "string" && GOCLIENTES_WEBHOOK_URL.trim() !== "") {
     fetch(GOCLIENTES_WEBHOOK_URL, {
       method: "POST",
@@ -1405,7 +1405,6 @@ function submitLead(data) {
     .then(res => console.log("Lead enviado:", res))
     .catch(err => console.error("Error enviando lead:", err));
   }
-  */
 }
 
 /* ------------------------------------------------------------
