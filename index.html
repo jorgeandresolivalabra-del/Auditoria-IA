@@ -420,7 +420,7 @@ a{color:var(--c-primary);text-decoration:none}
 /* ------------------------------------------------------------
    CONFIGURACIÓN EDITABLE
    ------------------------------------------------------------ */
-const GOCLIENTES_WHATSAPP = "569XXXXXXXX"; // ← Reemplazar por número real (sin + ni espacios)
+const GOCLIENTES_WHATSAPP = "56920178885"; // ← Reemplazar por número real (sin + ni espacios)
 const GOCLIENTES_WHATSAPP_MSG =
   "Hola, completé la Auditoría IA GoClientes para mi empresa y me gustaría revisar las oportunidades detectadas.";
 const GOCLIENTES_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwELzNcbw01Z4Xbb2SYN4vJPs1ZreW2YzT9Ayq-2RrmuJBywe2pIm15ixik9t3kIrHSpQ/exec";
@@ -1393,19 +1393,22 @@ function submitLead(data) {
      1) Define GOCLIENTES_WEBHOOK_URL arriba con tu endpoint.
      2) Descomenta el bloque fetch de abajo.
   */
-  
-  if (typeof GOCLIENTES_WEBHOOK_URL === "string" && GOCLIENTES_WEBHOOK_URL.trim() !== "") {
-    fetch(GOCLIENTES_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    })
-    .then(r => r.json().catch(() => ({})))
-    .then(res => console.log("Lead enviado:", res))
-    .catch(err => console.error("Error enviando lead:", err));
-  }
+if (GOCLIENTES_WEBHOOK_URL.trim() !== "") {
+  fetch(GOCLIENTES_WEBHOOK_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    console.log("Datos enviados al webhook");
+  })
+  .catch(error => {
+    console.error("Error enviando datos:", error);
+  });
 }
-
 /* ------------------------------------------------------------
    ACCIONES FINALES
    ------------------------------------------------------------ */
